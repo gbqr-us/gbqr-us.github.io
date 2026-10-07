@@ -3,13 +3,44 @@ const REDIRECT_MAX_AGE_SECONDS = 86400;
 const HSTS_MAX_AGE_SECONDS = 31536000;
 const PRODUCTION_HOST = "gbqr.us";
 
-function canonicalPath(pathname) {
-  const path = pathname.toLowerCase();
-  const lastSegment = path.slice(path.lastIndexOf("/") + 1);
-  if (lastSegment !== "" && !lastSegment.includes(".")) {
-    return path + "/";
+const ASSET_TREE = {
+  "index.html": null,
+  GAME01: {
+    ABC4: {
+      "001C4E": {
+        "index.html": null,
+        "README.md": null,
+        "binjgb.js": null,
+        "binjgb.wasm": null,
+        css: { "style.css": null },
+        js: { "script.js": null },
+        rom: { "README.md": null, "game.gb": null },
+      },
+    },
+  },
+};
+
+function lookupSegment(node, segment) {
+  if (!node) return null;
+  const wanted = segment.toLowerCase();
+  for (const name of Object.keys(node)) {
+    if (name.toLowerCase() === wanted) return name;
   }
-  return path;
+  return null;
+}
+
+export function canonicalPath(pathname) {
+  const parts = pathname.split("/").filter((part) => part.length > 0);
+  if (parts.length === 0) return "/";
+  let node = ASSET_TREE;
+  const mapped = [];
+  for (const part of parts) {
+    const name = lookupSegment(node, part);
+    if (!name) return pathname;
+    mapped.push(name);
+    node = node[name];
+  }
+  return "/" + mapped.join("/");
 }
 
 function isLocalHost(hostname) {

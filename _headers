@@ -1,20 +1,20 @@
-/game01/abc4/001c4e
+/GAME01/ABC4/001C4E
   Cache-Control: public, max-age=60
 
-/game01/abc4/001c4e/
+/GAME01/ABC4/001C4E/
   Cache-Control: public, max-age=60
 
-/game01/abc4/001c4e/index.html
+/GAME01/ABC4/001C4E/index.html
   Cache-Control: public, max-age=60
 
-/game01/abc4/001c4e/binjgb.js
+/GAME01/ABC4/001C4E/binjgb.js
   Cache-Control: public, max-age=86400
 
-/game01/abc4/001c4e/binjgb.wasm
+/GAME01/ABC4/001C4E/binjgb.wasm
   Cache-Control: public, max-age=86400
 
-/game01/abc4/001c4e/css/style.css
+/GAME01/ABC4/001C4E/css/style.css
   Cache-Control: public, max-age=86400
 
-/game01/abc4/001c4e/rom/game.gb
+/GAME01/ABC4/001C4E/rom/game.gb
   Cache-Control: public, max-age=86400
