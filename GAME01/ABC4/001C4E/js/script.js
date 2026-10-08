@@ -393,10 +393,12 @@ class Emulator {
   }
 
   updateOnscreenGamepad() {
-    $("#controller").style.display = this.touchEnabled ? "block" : "none";
+    if (!controllerEl) return;
+    controllerEl.style.display = this.touchEnabled ? "block" : "none";
   }
 
   bindTouch() {
+    if (!selectEl || !startEl || !bEl || !aEl || !dpadEl) return;
     this.touchFuncs = {
       controller_b: this.setJoypB.bind(this),
       controller_a: this.setJoypA.bind(this),
@@ -426,6 +428,7 @@ class Emulator {
   }
 
   unbindTouch() {
+    if (!selectEl || !startEl || !bEl || !aEl || !dpadEl) return;
     selectEl.removeEventListener("touchstart", this.boundButtonTouchStart);
     selectEl.removeEventListener("touchend", this.boundButtonTouchEnd);
     startEl.removeEventListener("touchstart", this.boundButtonTouchStart);
